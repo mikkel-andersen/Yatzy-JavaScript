@@ -1,84 +1,93 @@
-class Die {
-    constructor() {
-      this.value = 1; 
+export class Yatzy {
+  constructor() {
+    class Die {
+      constructor() {
+        this.value = 1; 
+      }
+
+      // Roll the die
+      roll() {
+        this.value = Math.floor(Math.random() * 6) + 1; 
+      }
+
+      getValue() {
+        return this.value;
+      }
     }
-  
-    // Roll the die
-    roll() {
-      this.value = Math.floor(Math.random() * 6) + 1; 
+
+    this.dice = [];
+    for (let i = 0; i < 5; i++) {
+      this.dice.push(new Die());
     }
-  
- 
-    getValue() {
-      return this.value;
+    this.rollCounter = 0;
+  }
+
+  setDice(values) {
+    for (let i = 0; i < 5; i++) {
+      this.dice[i].value = values[i];
     }
   }
-  
-  let dice = [];
-  for (let i = 0; i < 5; i++) {
-    dice.push(new Die());
-  }
-  
-  /*  
-  // And get their values
-  dice.forEach(die => console.log(die.getValue()));
-  */
 
-  let rollCounter = 0;
-
-  function getRollCounter() {
-    return rollCounter;
+  getRollCounter() {
+    return this.rollCounter;
   }
 
-  function resetRollCounter() {
-    rollCounter = 0;
+  resetRollCounter() {
+    this.rollCounter = 0;
   }
 
-  function rollDies() {
-    if (rollCounter != 0) { 
-    dice.forEach(die => die.roll());
-    rollCounter++;
+  rollDies() {
+    if (this.rollCounter != 3) { 
+      this.dice.forEach(die => die.roll());
+      this.rollCounter++;
+    }
   }
-}
 
-//---Metoder til at udregne slag---//
-function Aces(dice) {
-    return dice.filter(val => val == 1).length;
-}
-
-function Twos(dice) {
-    return dice.filter(val => val == 2).length;
-}
-
-function Threes(dice) {
-    return dice.filter(val => val == 3).length;
-}
-
-function Fours(dice) {
-    return dice.filter(val => val == 4).length;
-}
-
-function Fives(dice) {
-    return dice.filter(val => val == 5).length;
-}
-
-function Sixes(dice) {
-    return dice.filter(val => val == 6).length;
-}
-
-
-
-function frequency() {
+  frequency() {
     let frequency = new Array(7).fill(0);
-    dice.forEach(die => {
+    this.dice.forEach(die => {
       frequency[die.getValue()]++;
     });
     return frequency;
   } 
 
-  function onePairPoints() {
+  
+
+  Aces() {
+    return this.frequency()[1] * 1;
+  }
+
+  Twos() {
+    return this.frequency()[2] * 2;
+  }
+
+  Threes() {
+    return this.frequency()[3] * 3;
+  }
+
+  Fours() {
+    return this.frequency()[4] * 4;
+  }
+
+  Fives() {
+    return this.frequency()[5] * 5;
+  }
+
+  Sixes() {
+    return this.frequency()[6] * 6;
+  }
+
+  frequency() {
+    let frequency = new Array(7).fill(0);
+    this.dice.forEach(die => {
+      frequency[die.getValue()]++;
+    });
+    return frequency;
+  }
+
+  onePairPoints() {
     let pairPoints = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 1; i < freq.length; i++) {
       if (freq[i] >= 2) {
         if (pairPoints < i * 2) {
@@ -89,11 +98,11 @@ function frequency() {
     return pairPoints;
   }
 
-  function twoPairPoints() {
-    let twoPairPoints = 0;
+  twoPairPoints() {
+  let twoPairPoints = 0;
     let pair = 0;
     let count = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 1; i < freq.length; i++) {
       if (freq[i] >= 2) {
         pair += i * 2;
@@ -106,9 +115,9 @@ function frequency() {
     return twoPairPoints;
   }
 
-  function threeSamePoints() {
+  threeSamePoints() {
     let threeSame = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 1; i < freq.length; i++) {
       if (freq[i] >= 3) {
         threeSame = i * 3;
@@ -117,9 +126,9 @@ function frequency() {
     return threeSame;
   }
 
-  function fourSamePoints() {
+  fourSamePoints() {
     let fourSame = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 1; i < freq.length; i++) {
       if (freq[i] >= 4) {
         fourSame = i * 4;
@@ -128,9 +137,9 @@ function frequency() {
     return fourSame;
   }
 
-  function fullHousePoints() {
+  fullHousePoints() {
     let fHouse = 0, fHouse2 = 0, fHouse3 = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 0; i < freq.length; i++) {
       if (freq[i] == 3) {
         fHouse3 = i * 3;
@@ -147,15 +156,15 @@ function frequency() {
     return fHouse;
   }
 
-  function smallStraightPoints() {
+  smallStraightPoints() {
     let smallStraight = 0;
     let sum = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 0; i < freq.length; i++) {
       if (freq[i] == 1) {
-        for (let j = 0; j < dice.length; j++) {
-          if (dice[j].getValue() <= 5 && dice[j].getValue() != 6) {
-            sum += dice[j].getValue();
+        for (let j = 0; j < this.dice.length; j++) {
+          if (this.dice[j].getValue() <= 5 && this.dice[j].getValue() != 6) {
+            sum += this.dice[j].getValue();
           }
         }
       }
@@ -166,15 +175,15 @@ function frequency() {
     return smallStraight;
   }
 
-  function largeStraightPoints() {
+  largeStraightPoints() {
     let bigStraight = 0;
     let sum = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 0; i < freq.length; i++) {
       if (freq[i] == 1) {
-        for (let j = 0; j < dice.length; j++) {
-          if (dice[j].getValue() <= 6 && dice[j].getValue() != 1) {
-            sum += dice[j].getValue();
+        for (let j = 0; j < this.dice.length; j++) {
+          if (this.dice[j].getValue() <= 6 && this.dice[j].getValue() != 1) {
+            sum += this.dice[j].getValue();
           }
         }
       }
@@ -185,17 +194,17 @@ function frequency() {
     return bigStraight;
   }
 
-  function chancePoints() {
+  chancePoints() {
     let chance = 0;
-    for (let i = 0; i < dice.length; i++) {
-      chance += dice[i].getValue();
+    for (let i = 0; i < this.dice.length; i++) {
+      chance += this.dice[i].getValue();
     }
     return chance;
   }
 
-  function yatzyPoints() {
+  yatzyPoints() {
     let yatzy = 0;
-    let freq = frequency();
+    let freq = this.frequency();
     for (let i = 1; i < freq.length; i++) {
       if (freq[i] == 5) {
         yatzy = 50;
@@ -203,8 +212,7 @@ function frequency() {
     }
     return yatzy;
   }
-
-
+}
 
 
 
