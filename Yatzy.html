@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="Yatzy.css">
     <title>Yatzy Game</title>
 </head>
 <body>
@@ -14,10 +15,54 @@
     <input type="number" id="dice4" readonly>
     <input type="number" id="dice5" readonly>
 
+    <h2>Scoring:</h2>
+    <table class="score-table">
+        <tr>
+          <td><label for="aces">Aces:</label></td>
+          <td><input type="number" id="aces" readonly></td>
+          <td><label for="twos">Twos:</label></td>
+          <td><input type="number" id="twos" readonly></td>
+        </tr>
+        <tr>
+          <td><label for="threes">Threes:</label></td>
+          <td><input type="number" id="threes" readonly></td>
+          <td><label for="fours">Fours:</label></td>
+          <td><input type="number" id="fours" readonly></td>
+        </tr>
+        <tr>
+            <td><label for="fives">Fives:</label></td>
+            <td><input type="number" id="fives" readonly></td>
+            <td><label for="sixes">Sixes:</label></td>
+            <td><input type="number" id="sixes" readonly></td>
+          </tr>
+        <!-- Add more rows as needed... -->
+      </table>
+    <br>
+    <label for="onePair">One Pair:</label>
+    <input type="number" id="onePair" readonly><br>
+    <label for="twoPairs">Two Pairs:</label>
+    <input type="number" id="twoPairs" readonly><br>
+    <label for="threeOfAKind">Three of a Kind:</label>
+    <input type="number" id="threeOfAKind" readonly><br>
+    <label for="fourOfAKind">Four of a Kind:</label>
+    <input type="number" id="fourOfAKind" readonly><br>
+    <label for="smallStraight">Small Straight:</label>
+    <input type="number" id="smallStraight" readonly><br>
+    <label for="largeStraight">Large Straight:</label>
+    <input type="number" id="largeStraight" readonly><br>
+    <label for="fullHouse">Full House:</label>
+    <input type="number" id="fullHouse" readonly><br>
+    <label for="chance">Chance:</label>
+    <input type="number" id="chance" readonly><br>
+    <label for="yatzy">Yatzy:</label>
+    <input type="number" id="yatzy" readonly><br>
+
     <!-- Rest of your HTML... -->
 
-    <script src="yatzy.js"></script>
-    <script>
+    <script type="module" src="yatzy.js"></script>
+    <script type="module">
+        import { Yatzy } from './yatzy.js';
+
         let yatzy = new Yatzy();
 
         document.getElementById('rollButton').addEventListener('click', function() {
@@ -26,6 +71,10 @@
             for (let i = 0; i < 5; i++) {
                 document.getElementById(`dice${i+1}`).value = yatzy.dice[i].getValue();
             }
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            yatzy.resetRollCounter();
         });
 
         // Rest of your JavaScript...

@@ -1,0 +1,13 @@
+.score-table {
+    width: 100%;
+}
+.score-table td {
+    padding: 5px;
+}
+.score-table td:first-child {
+    text-align: right;
+    padding-right: 10px;
+}
+.score-table td:last-child {
+    text-align: left;
+}
