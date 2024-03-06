@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Yatzy Game</title>
 </head>
 <body>
-    
+    <button id="rollButton">Roll Dice</button>
+    <button id="resetButton">Reset Counter</button>
+
+    <h2>Dice:</h2>
+    <input type="number" id="dice1" readonly>
+    <input type="number" id="dice2" readonly>
+    <input type="number" id="dice3" readonly>
+    <input type="number" id="dice4" readonly>
+    <input type="number" id="dice5" readonly>
+
+    <!-- Rest of your HTML... -->
+
+    <script src="yatzy.js"></script>
+    <script>
+        let yatzy = new Yatzy();
+
+        document.getElementById('rollButton').addEventListener('click', function() {
+            yatzy.rollDies();
+            // Update the dice fields with the new dice values
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`dice${i+1}`).value = yatzy.dice[i].getValue();
+            }
+        });
+
+        // Rest of your JavaScript...
+    </script>
 </body>
 </html>
