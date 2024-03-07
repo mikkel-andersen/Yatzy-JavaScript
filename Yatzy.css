@@ -1,20 +1,55 @@
+body {
+    margin: auto;
+    text-align: center;
+    background: linear-gradient(to bottom, #f0f0f0 0%, #758ae5 50%, #e2a5a5 100%); /* Smoother gradient */
+    color: #333; /* Dark gray text */
+    min-height: 750px;
+}
+
+#diceTray {
+    width: 300px;
+    height: 65px;
+    margin: auto;
+    padding: 20px;
+    background-color: #af7254; /* Light gray background */
+    border: 1px solid #333; /* Dark gray border */
+    border-radius: 100px; /* Rounded corners */
+    box-shadow: inset 0 0 10px #000000;; /* Box shadow */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
 .score-table {
-    width: 25%;
-    border-collapse: separate;
+    margin: auto;
+    width: 80%; /* Wider table */
+    max-width: 600px; /* Maximum width */
     border-spacing: 0;
+    border: 1px solid #333; /* Dark gray border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Box shadow */
+    overflow: hidden; /* Hide the parts of the cells that are outside the rounded corners */
 }
 
 .score-table td {
-    padding: 5px;
+    padding: 10px; /* More padding */
+    border: none;
+
+    color: #333; /* Dark gray text */
 }
 
 .score-table td:first-child {
     text-align: right;
     padding-right: 10px;
+
 }
 
 .score-table td:last-child {
     text-align: left;
+    padding-left: 10px;
+
 }
 
 .border-top td {
@@ -24,4 +59,30 @@
 #dice1, #dice2, #dice3, #dice4, #dice5 {
     width: 50px;
     height: 50px;
+    transition: all 0.3s ease; /* Add a transition */
 }
+
+#dice1:hover, #dice2:hover, #dice3:hover, #dice4:hover, #dice5:hover {
+    transform: scale(1.1); /* Increase the size */
+    cursor: pointer; /* Change the cursor */
+}
+
+
+img.held {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add a box shadow */
+    cursor: pointer; /* Change the cursor */
+    transition: all 0.3s ease; /* Add a transition */
+    transform: scale(1.0); /* Increase the size */
+    opacity: 0.75; /* Make the image semi-transparent */
+}
+
+@keyframes roll {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.roll {
+    animation: roll 0.4s ease;
+}
+

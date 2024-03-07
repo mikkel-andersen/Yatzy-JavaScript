@@ -11,69 +11,74 @@
     <button id="resetButton">Reset Counter</button>
 
     <h2>Terninger:</h2>
-    <img id="dice1" src="img/dice-1.png">
-    <img id="dice2" src="img/dice-1.png">
-    <img id="dice3" src="img/dice-1.png">
-    <img id="dice4" src="img/dice-1.png">
-    <img id="dice5" src="img/dice-1.png">
+    <div id="diceTray">
+    <img id="dice1" src="img/die1.png">
+    <img id="dice2" src="img/die1.png">
+    <img id="dice3" src="img/die1.png">
+    <img id="dice4" src="img/die1.png">
+    <img id="dice5" src="img/die1.png">
+    </div>
+    <div id="rollCounter">Rolls: 0</div>
 
     <h2>Score:</h2>
-    <table class="score-table">
-        <tr>
-            <td><label for="aces">Aces:</label></td>
-            <td><input type="number" id="aces" readonly></td>
-            <td><label for="twos">Twos:</label></td>
-            <td><input type="number" id="twos" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="threes">Threes:</label></td>
-            <td><input type="number" id="threes" readonly></td>
-            <td><label for="fours">Fours:</label></td>
-            <td><input type="number" id="fours" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="fives">Fives:</label></td>
-            <td><input type="number" id="fives" readonly></td>
-            <td><label for="sixes">Sixes:</label></td>
-            <td><input type="number" id="sixes" readonly></td>
-        </tr>
-        <tr class="border-top">
-            <td><label for="sum"><b>Sum:</b></label></td>
-            <td><input type="number" id="sum" readonly></td>
-            <td><label for="bonus"><b>Bonus:</b></label></td>
-            <td><input type="number" id="bonus" readonly></td>
-        <tr class="border-top">
-            <td><label for="onePair">One Pair:</label></td>
-            <td><input type="number" id="onePair" readonly></td>
-            <td><label for="twoPairs">Two Pairs:</label></td>
-            <td><input type="number" id="twoPairs" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="threeOfAKind">Three of a Kind:</label></td>
-            <td><input type="number" id="threeOfAKind" readonly></td>
-            <td><label for="fourOfAKind">Four of a Kind:</label></td>
-            <td><input type="number" id="fourOfAKind" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="fullhouse">Full house:</label></td>
-            <td><input type="number" id="fullHouse" readonly></td>
-            <td><label for="smallStraight">Small Straigth:</label></td>
-            <td><input type="number" id="smallStraight" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="bigStraight">Big Straight:</label></td>
-            <td><input type="number" id="bigStraight" readonly></td>
-            <td><label for="chance">Chance:</label></td>
-            <td><input type="number" id="chance" readonly></td>
-        </tr>
-        <tr>
-            <td><label for="yatzy">Yatzy:</label></td>
-            <td><input type="number" id="yatzy" readonly></td>
-            <!-- Empty cells for alignment -->
-            <td><label for="total"><b>Total:</b></label></td>
-            <td><input type="number" id="total" readonly></td>
-        </tr>
-        <!-- Add more rows as needed... -->
+    <table>
+        <table class="score-table">
+            <tr>
+                <td><label for="aces">Aces:</label></td>
+                <td><input type="number" id="aces" readonly></td>
+                <td><label for="twos">Twos:</label></td>
+                <td><input type="number" id="twos" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="threes">Threes:</label></td>
+                <td><input type="number" id="threes" readonly></td>
+                <td><label for="fours">Fours:</label></td>
+                <td><input type="number" id="fours" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="fives">Fives:</label></td>
+                <td><input type="number" id="fives" readonly></td>
+                <td><label for="sixes">Sixes:</label></td>
+                <td><input type="number" id="sixes" readonly></td>
+            </tr>
+            <tr class="border-top">
+                <td><label for="sum"><b>Sum:</b></label></td>
+                <td><input type="number" id="sum" readonly></td>
+                <td><label for="bonus"><b>Bonus:</b></label></td>
+                <td><input type="number" id="bonus" readonly></td>
+            <tr class="border-top">
+                <td><label for="onePair">One Pair:</label></td>
+                <td><input type="number" id="onePair" readonly></td>
+                <td><label for="twoPairs">Two Pairs:</label></td>
+                <td><input type="number" id="twoPairs" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="threeOfAKind">Three of a Kind:</label></td>
+                <td><input type="number" id="threeOfAKind" readonly></td>
+                <td><label for="fourOfAKind">Four of a Kind:</label></td>
+                <td><input type="number" id="fourOfAKind" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="fullhouse">Full house:</label></td>
+                <td><input type="number" id="fullHouse" readonly></td>
+                <td><label for="smallStraight">Small Straigth:</label></td>
+                <td><input type="number" id="smallStraight" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="bigStraight">Big Straight:</label></td>
+                <td><input type="number" id="bigStraight" readonly></td>
+                <td><label for="chance">Chance:</label></td>
+                <td><input type="number" id="chance" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="yatzy">Yatzy:</label></td>
+                <td><input type="number" id="yatzy" readonly></td>
+                <!-- Empty cells for alignment -->
+                <td><label for="total"><b>Total:</b></label></td>
+                <td><input type="number" id="total" readonly></td>
+            </tr>
+            <!-- Add more rows as needed... -->
+        </table>
     </table>
 
 
@@ -91,7 +96,20 @@
             let yatzy = new Yatzy();
 
             document.getElementById('rollButton').addEventListener('click', function () {
+                // Add the "roll" class to the dice images
+                yatzy.dice.forEach(function (die, index) {
+                    var dice = document.getElementById('dice' + (index + 1));
+                    dice.classList.add('roll');
+
+                    // Remove the "roll" class after the animation is done
+                    dice.addEventListener('animationend', function () {
+                        dice.classList.remove('roll');
+                    }, { once: true });
+                });
+
                 yatzy.rollDies();
+                document.getElementById('rollCounter').textContent = 'Rolls: ' + yatzy.getRollCounter();
+
                 // Update the dice fields with the new dice values
                 yatzy.dice.forEach(function (die, index) {
                     document.getElementById('dice' + (index + 1)).src = 'img/die' + die.getValue() + '.png';
@@ -100,7 +118,25 @@
 
             document.getElementById('resetButton').addEventListener('click', function () {
                 yatzy.resetRollCounter();
+                document.getElementById('rollCounter').textContent = 'Rolls: 0';
             });
+
+            document.getElementById('resetButton').addEventListener('click', function () {
+                yatzy.resetRollCounter();
+            });
+
+            // Add a click event listener to each image
+            [1, 2, 3, 4, 5].forEach(function (index) {
+                document.getElementById('dice' + index).addEventListener('click', function (event) {
+                    // Toggle the "held" class on the image
+                    event.target.classList.toggle('held');
+
+                    // Update the corresponding die to be "held"
+                    yatzy.dice[index - 1].held = event.target.classList.contains('held');
+                });
+            });
+
+
 
             // Rest of your JavaScript...
         </script>
