@@ -7,21 +7,21 @@
 </head>
 
 <body>
+    <br>
     <button id="rollButton">Roll Dice</button>
-    <button id="resetButton">Reset Counter</button>
 
     <h2>Terninger:</h2>
     <div id="diceTray">
-    <img id="dice1" src="img/die1.png">
-    <img id="dice2" src="img/die1.png">
-    <img id="dice3" src="img/die1.png">
-    <img id="dice4" src="img/die1.png">
-    <img id="dice5" src="img/die1.png">
+        <img id="dice1" src="img/die1.png">
+        <img id="dice2" src="img/die1.png">
+        <img id="dice3" src="img/die1.png">
+        <img id="dice4" src="img/die1.png">
+        <img id="dice5" src="img/die1.png">
     </div>
     <div id="rollCounter">Rolls: 0</div>
 
     <h2>Score:</h2>
-    <table>
+
         <table class="score-table">
             <tr>
                 <td><label for="aces">Aces:</label></td>
@@ -79,67 +79,11 @@
             </tr>
             <!-- Add more rows as needed... -->
         </table>
-    </table>
-
-
-    </table>
     <br>
-    <table class="score-table">
-        <!-- Your existing rows here... -->
 
-        <!-- Rest of your HTML... -->
+    
 
         <script type="module" src="yatzy.js"></script>
-        <script type="module">
-            import { Yatzy } from './yatzy.js';
-
-            let yatzy = new Yatzy();
-
-            document.getElementById('rollButton').addEventListener('click', function () {
-                // Add the "roll" class to the dice images
-                yatzy.dice.forEach(function (die, index) {
-                    var dice = document.getElementById('dice' + (index + 1));
-                    dice.classList.add('roll');
-
-                    // Remove the "roll" class after the animation is done
-                    dice.addEventListener('animationend', function () {
-                        dice.classList.remove('roll');
-                    }, { once: true });
-                });
-
-                yatzy.rollDies();
-                document.getElementById('rollCounter').textContent = 'Rolls: ' + yatzy.getRollCounter();
-
-                // Update the dice fields with the new dice values
-                yatzy.dice.forEach(function (die, index) {
-                    document.getElementById('dice' + (index + 1)).src = 'img/die' + die.getValue() + '.png';
-                });
-            });
-
-            document.getElementById('resetButton').addEventListener('click', function () {
-                yatzy.resetRollCounter();
-                document.getElementById('rollCounter').textContent = 'Rolls: 0';
-            });
-
-            document.getElementById('resetButton').addEventListener('click', function () {
-                yatzy.resetRollCounter();
-            });
-
-            // Add a click event listener to each image
-            [1, 2, 3, 4, 5].forEach(function (index) {
-                document.getElementById('dice' + index).addEventListener('click', function (event) {
-                    // Toggle the "held" class on the image
-                    event.target.classList.toggle('held');
-
-                    // Update the corresponding die to be "held"
-                    yatzy.dice[index - 1].held = event.target.classList.contains('held');
-                });
-            });
-
-
-
-            // Rest of your JavaScript...
-        </script>
 </body>
 
 </html>

@@ -29,7 +29,9 @@ describe('Yatzy', () => {
         yatzy.setDice([3, 3, 1, 2, 3]);
         // Exercise
         let result = yatzy.threeSamePoints();
+      
         // Verify
+       
         assert.equal(result, 9);
     });
 

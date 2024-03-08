@@ -2,12 +2,13 @@ export class Yatzy {
   constructor() {
     class Die {
       constructor() {
-        this.value = 1; 
+        this.value = 1;
+        this.held = false;
       }
 
       // Roll the die
       roll() {
-        this.value = Math.floor(Math.random() * 6) + 1; 
+        this.value = Math.floor(Math.random() * 6) + 1;
       }
 
       getValue() {
@@ -28,6 +29,44 @@ export class Yatzy {
     }
   }
 
+
+
+  rollDies() {
+    if (this.rollCounter != 3) {
+      this.dice.forEach(die => {
+        if (!die.held) { // Only roll the die if it's not held
+          die.roll();
+        }
+      });
+
+      this.rollCounter++;
+
+      this.dice.forEach(function (die, index) {
+        document.getElementById('dice' + (index + 1)).src = 'img/die' + die.getValue() + '.png';
+      });
+
+      this.updateFields();
+
+      // Update the roll counter display
+      document.querySelector('#rollCounter').textContent = 'Rolls: ' + this.rollCounter;
+
+      if (this.rollCounter === 3) {
+        let rollButton = document.querySelector('#rollButton');
+        rollButton.disabled = true;
+      }
+    }
+  }
+
+  uncheckAllDice() {
+    this.dice.forEach((die, index) => {
+      die.held = false;
+      let dieElement = document.getElementById('dice' + (index + 1));
+      if (dieElement.classList.contains('held')) {
+        dieElement.classList.remove('held');
+      }
+    });
+  }
+
   getRollCounter() {
     return this.rollCounter;
   }
@@ -36,53 +75,131 @@ export class Yatzy {
     this.rollCounter = 0;
   }
 
-  rollDies() {
-    if (this.rollCounter != 3) { 
-      this.dice.forEach(die => die.roll());
-      this.rollCounter++;
+  // updateFields() {
+  //   let results = this.getResults();
+  //   let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+  //   let sum = 0;
+  //   fieldNames.forEach((fieldName, index) => {
+  //     let field = document.getElementById(fieldName);
+  //     if (!field.disabled) {
+  //       field.value = results[index];
+  //     }
+
+  //     // Only add the event listener the first time updateFields is called
+  //     if (!field.hasEventListener) {
+  //       field.addEventListener('click', function () {
+  //         field.disabled = true;
+  //         this.uncheckAllDice(); // Uncheck all dice
+  //         this.resetRollCounter();
+  //         document.getElementById('rollCounter').textContent = 'Rolls: 0';
+  //         let rollButton = document.querySelector('#rollButton');
+  //         rollButton.disabled = false;
+
+  //         // If the field is one of the first six, add its value to the sum
+  //         if (index < 6) {
+  //           sum += parseInt(field.value, 10);
+  //           document.getElementById('sum').value = sum;
+  //           if (sum >= 63) {
+  //             document.getElementById('bonus').value = 50;
+  //           }
+  //         }
+
+  //         // Calculate the total score
+  //         this.calculateTotal();
+  //       }.bind(this));
+  //     }
+  //   }
+
+  calculateSum() {
+    let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes'];
+    let sum = 0;
+    fieldNames.forEach((fieldName) => {
+      let field = document.getElementById(fieldName);
+      if (field.disabled) { // Only add the value if the field is disabled (i.e., a score has been saved)
+        sum += parseInt(field.value, 10);
+      }
+    });
+    document.getElementById('sum').value = sum;
+    if (sum >= 63) {
+      document.getElementById('bonus').value = 50;
     }
   }
 
+  updateFields() {
+    let results = this.getResults();
+    let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+    fieldNames.forEach((fieldName, index) => {
+      let field = document.getElementById(fieldName);
+      if (!field.disabled) {
+        field.value = results[index];
+      }
+
+      // Only add the event listener the first time updateFields is called
+      if (!field.onclick) {
+        field.onclick = () => {
+          field.disabled = true;
+          this.uncheckAllDice(); // Uncheck all dice
+          this.resetRollCounter();
+          document.getElementById('rollCounter').textContent = 'Rolls: 0';
+          let rollButton = document.querySelector('#rollButton');
+          rollButton.disabled = false;
+
+          // Calculate the sum
+          this.calculateSum();
+
+          // Calculate the total score after a slight delay
+          setTimeout(() => this.calculateTotal(), 10);
+        };
+      }
+    });
+  }
+
+  calculateTotal() {
+    let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+    let total = 0;
+    fieldNames.forEach((fieldName) => {
+      let field = document.getElementById(fieldName);
+      if (field.disabled) { // Only add the value if the field is disabled (i.e., a score has been saved)
+        total += parseInt(field.value, 10);
+      }
+    });
+    total += parseInt(document.getElementById('sum').value, 10) || 0;
+    total += parseInt(document.getElementById('bonus').value, 10) || 0;
+    document.getElementById('total').value = total;
+  }
+
+
+
+
   frequency() {
     let frequency = new Array(7).fill(0);
     this.dice.forEach(die => {
       frequency[die.getValue()]++;
     });
     return frequency;
-  } 
-
-  
-
-  Aces() {
-    return this.frequency()[1] * 1;
   }
 
-  Twos() {
-    return this.frequency()[2] * 2;
-  }
+  getResults() {
+    let results = new Array(15);
+    for (let i = 0; i <= 5; i++) {
+      results[i] = this.sameValuePoints(i + 1);
+    }
+    results[6] = this.onePairPoints();
+    results[7] = this.twoPairPoints();
+    results[8] = this.threeSamePoints();
+    results[9] = this.fourSamePoints();
+    results[10] = this.fullHousePoints();
+    results[11] = this.smallStraightPoints();
+    results[12] = this.largeStraightPoints();
+    results[13] = this.chancePoints();
+    results[14] = this.yatzyPoints();
 
-  Threes() {
-    return this.frequency()[3] * 3;
+    return results;
   }
-
-  Fours() {
-    return this.frequency()[4] * 4;
-  }
-
-  Fives() {
-    return this.frequency()[5] * 5;
-  }
-
-  Sixes() {
-    return this.frequency()[6] * 6;
-  }
-
-  frequency() {
-    let frequency = new Array(7).fill(0);
-    this.dice.forEach(die => {
-      frequency[die.getValue()]++;
-    });
-    return frequency;
+  sameValuePoints(value) {
+    let valuePoints = 0;
+    valuePoints = this.frequency()[value] * value;
+    return valuePoints;
   }
 
   onePairPoints() {
@@ -99,7 +216,7 @@ export class Yatzy {
   }
 
   twoPairPoints() {
-  let twoPairPoints = 0;
+    let twoPairPoints = 0;
     let pair = 0;
     let count = 0;
     let freq = this.frequency();
@@ -213,6 +330,28 @@ export class Yatzy {
     return yatzy;
   }
 }
+
+window.onload = function () {
+  let yatzy = new Yatzy();
+
+  yatzy.dice.forEach((die, index) => {
+    let dieElement = document.getElementById('dice' + (index + 1));
+    dieElement.addEventListener('click', function () {
+      die.held = !die.held; // Toggle the held property of the die
+
+      // Add or remove the held class depending on whether the die is held
+      if (die.held) {
+        dieElement.classList.add('held');
+      } else {
+        dieElement.classList.remove('held');
+      }
+    });
+  });
+
+  document.querySelector('#rollButton').addEventListener('click', function () {
+    yatzy.rollDies();
+  });
+};
 
 
 

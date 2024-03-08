@@ -86,3 +86,42 @@ img.held {
     animation: roll 0.4s ease;
 }
 
+#dice1.held img, #dice2.held img, #dice3.held img, #dice4.held img, #dice5.held img {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add a box shadow */
+    cursor: pointer; /* Change the cursor */
+    transition: all 0.3s ease; /* Add a transition */
+    transform: scale(1.0); /* Increase the size */
+    opacity: 0.75; /* Make the image semi-transparent */
+    border: 2px solid red; /* Add a border */
+}
+
+#rollButton {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    border-radius: 50px;
+    color: white; /* White text color */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; /* Change cursor to pointer */
+    transition-duration: 0.4s; /* Transition */
+
+    box-shadow: 0 5px #666;
+    transition: all 0.1s ease;
+
+}
+
+#rollButton:hover {
+
+    transform: scale(1.1);
+    
+}
+
+#rollButton:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(8px);
+}
+
