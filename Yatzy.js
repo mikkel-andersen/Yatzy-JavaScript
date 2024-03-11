@@ -157,15 +157,25 @@ export class Yatzy {
   calculateTotal() {
     let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
     let total = 0;
+    let allFieldsDisabled = true;
     fieldNames.forEach((fieldName) => {
       let field = document.getElementById(fieldName);
       if (field.disabled) { // Only add the value if the field is disabled (i.e., a score has been saved)
         total += parseInt(field.value, 10);
+      } else {
+        allFieldsDisabled = false;
       }
     });
     total += parseInt(document.getElementById('sum').value, 10) || 0;
     total += parseInt(document.getElementById('bonus').value, 10) || 0;
     document.getElementById('total').value = total;
+
+    if (allFieldsDisabled) {
+      let newGame = window.confirm("All fields are filled. Do you want to start a new game?");
+      if (newGame) {
+        // Code to start a new game goes here
+      }
+    }
   }
 
 

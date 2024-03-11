@@ -96,7 +96,7 @@ img.held {
 }
 
 #rollButton {
-    background-color: #4CAF50; /* Green background */
+    background-color: #5b8beb; /* Green background */
     border: none; /* Remove border */
     border-radius: 50px;
     color: white; /* White text color */
@@ -122,6 +122,6 @@ img.held {
 
 #rollButton:active {
     box-shadow: 0 2px #666;
-    transform: translateY(8px);
+    transform: translateY(4px);
 }
 
