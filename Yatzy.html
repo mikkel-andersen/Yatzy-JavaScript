@@ -8,7 +8,7 @@
 
 <body>
     <br>
-    <button id="rollButton">Roll Dice</button>
+
 
     <h2>Terninger:</h2>
     <div id="diceTray">
@@ -19,26 +19,26 @@
         <img id="dice5" src="img/die1.png">
     </div>
     <div id="rollCounter">Rolls: 0</div>
-
+    <button id="rollButton">Rul Terninger</button>
     <h2>Score:</h2>
-
-        <table class="score-table">
+    <div class="grid-container"> <!--Opretter grid-->
+        <table class="score-table"> <!--Opretter tabellen, som holder styr på alle score felterne-->
             <tr>
-                <td><label for="aces">Aces:</label></td>
+                <td><label for="aces">Enere:</label></td>
                 <td><input type="number" id="aces" readonly></td>
-                <td><label for="twos">Twos:</label></td>
+                <td><label for="twos">Toer:</label></td>
                 <td><input type="number" id="twos" readonly></td>
             </tr>
             <tr>
-                <td><label for="threes">Threes:</label></td>
+                <td><label for="threes">Treer:</label></td>
                 <td><input type="number" id="threes" readonly></td>
-                <td><label for="fours">Fours:</label></td>
+                <td><label for="fours">Fireer:</label></td>
                 <td><input type="number" id="fours" readonly></td>
             </tr>
             <tr>
-                <td><label for="fives">Fives:</label></td>
+                <td><label for="fives">Femere:</label></td>
                 <td><input type="number" id="fives" readonly></td>
-                <td><label for="sixes">Sixes:</label></td>
+                <td><label for="sixes">Seksere:</label></td>
                 <td><input type="number" id="sixes" readonly></td>
             </tr>
             <tr class="border-top">
@@ -47,42 +47,38 @@
                 <td><label for="bonus"><b>Bonus:</b></label></td>
                 <td><input type="number" id="bonus" readonly></td>
             <tr class="border-top">
-                <td><label for="onePair">One Pair:</label></td>
+                <td><label for="onePair">Et par:</label></td>
                 <td><input type="number" id="onePair" readonly></td>
-                <td><label for="twoPairs">Two Pairs:</label></td>
+                <td><label for="twoPairs">To Par:</label></td>
                 <td><input type="number" id="twoPairs" readonly></td>
             </tr>
             <tr>
-                <td><label for="threeOfAKind">Three of a Kind:</label></td>
+                <td><label for="threeOfAKind">Tre ens:</label></td>
                 <td><input type="number" id="threeOfAKind" readonly></td>
-                <td><label for="fourOfAKind">Four of a Kind:</label></td>
+                <td><label for="fourOfAKind">Fire ens:</label></td>
                 <td><input type="number" id="fourOfAKind" readonly></td>
             </tr>
             <tr>
-                <td><label for="fullhouse">Full house:</label></td>
+                <td><label for="fullhouse">Fuldt hus:</label></td>
                 <td><input type="number" id="fullHouse" readonly></td>
-                <td><label for="smallStraight">Small Straigth:</label></td>
+                <td><label for="smallStraight">Lille Straigth:</label></td>
                 <td><input type="number" id="smallStraight" readonly></td>
             </tr>
             <tr>
-                <td><label for="bigStraight">Big Straight:</label></td>
+                <td><label for="bigStraight">Stor Straight:</label></td>
                 <td><input type="number" id="bigStraight" readonly></td>
-                <td><label for="chance">Chance:</label></td>
+                <td><label for="chance">Chancen:</label></td>
                 <td><input type="number" id="chance" readonly></td>
             </tr>
             <tr>
                 <td><label for="yatzy">Yatzy:</label></td>
                 <td><input type="number" id="yatzy" readonly></td>
-                <!-- Empty cells for alignment -->
                 <td><label for="total"><b>Total:</b></label></td>
                 <td><input type="number" id="total" readonly></td>
             </tr>
-            <!-- Add more rows as needed... -->
         </table>
-    <br>
-
-    
-
+    </div>
+     <!-- For at kunne bruge javascript i HTML delen -->
         <script type="module" src="yatzy.js"></script>
 </body>
 

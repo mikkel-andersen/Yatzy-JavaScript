@@ -11,5 +11,8 @@
     "test": "mocha 'test/*.test.js'"
   },
   "author": "Mikkel",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
 }

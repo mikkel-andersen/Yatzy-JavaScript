@@ -1,5 +1,6 @@
 export class Yatzy {
-  constructor() {
+  constructor(window = globalThis.window) {
+    this.window = window;
     class Die {
       constructor() {
         this.value = 1;
@@ -155,7 +156,7 @@ export class Yatzy {
   }
 
   calculateTotal() {
-    let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+    let fieldNames = ['onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
     let total = 0;
     let allFieldsDisabled = true;
     fieldNames.forEach((fieldName) => {
@@ -173,7 +174,7 @@ export class Yatzy {
     if (allFieldsDisabled) {
       let newGame = window.confirm("All fields are filled. Do you want to start a new game?");
       if (newGame) {
-        // Code to start a new game goes here
+        this.resetGame();
       }
     }
   }
@@ -339,6 +340,19 @@ export class Yatzy {
     }
     return yatzy;
   }
+
+resetGame() {
+  let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy', 'sum', 'bonus', 'total'];
+  fieldNames.forEach((fieldName) => {
+    let field = document.getElementById(fieldName);
+    field.value = '';
+    field.disabled = false;
+    this.resetRollCounter();
+  });
+  document.getElementById('rollCounter').textContent = 'Rolls: 0';
+}
+
+
 }
 
 window.onload = function () {

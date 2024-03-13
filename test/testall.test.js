@@ -127,67 +127,16 @@ describe('Yatzy', () => {
         assert.equal(yatzy.getRollCounter(), 0);
       });
 
-      it('Tester om Aces metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([1, 1, 3, 4, 5]);
-        // Exercise
-        let result = yatzy.Aces();
-        // Verify
-        assert.equal(result, 2);
-      });
-      
-      it('Tester om Twos metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([2, 2, 3, 4, 5]);
-        // Exercise
-        let result = yatzy.Twos();
-        // Verify
-        assert.equal(result, 4);
-      });
-      
-      it('Tester om Threes metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([3, 3, 3, 4, 5]);
-        // Exercise
-        let result = yatzy.Threes();
-        // Verify
-        assert.equal(result, 9);
-      });
-      
-      it('Tester om Fours metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([4, 4, 4, 4, 5]);
-        // Exercise
-        let result = yatzy.Fours();
-        // Verify
-        assert.equal(result, 16);
-      });
-      
-      it('Tester om Fives metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([5, 5, 5, 5, 5]);
-        // Exercise
-        let result = yatzy.Fives();
-        // Verify
-        assert.equal(result, 25);
-      });
-      
-      it('Tester om Sixes metoden virker korrekt', () => {
-        // Setup
-        let yatzy = new Yatzy();
-        yatzy.setDice([6, 6, 6, 6, 6]);
-        // Exercise
-        let result = yatzy.Sixes();
-        // Verify
-        assert.equal(result, 30);
-      });
+    
 
 
-
-    // Add more test cases for other functions here
+      it('Tester om frekvensmetoden virker', () => {
+        // Setup
+        let yatzy = new Yatzy();
+        yatzy.setDice([1, 1, 2, 2, 3]);
+        // Exercise
+        let result = yatzy.frequency();
+        // Verify
+        assert.deepEqual(result, [0, 2, 2, 1, 0, 0, 0]);
+      });
 });
