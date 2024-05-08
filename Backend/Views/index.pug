@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        title Yatzy Game
+        link(rel='stylesheet', href='/styles.css')
+    body
+        h1 Welcome to the Yatzy Game!
+        h2 Players:
+        ul
+            each player in players
+                li= player
+
+        
+        form(action="/add-player", method="POST")
+            label(for="player-name") Player Name:
+            input(type="text", id="player-name", name="player-name", required)
+            button(type="submit") Add Player
+
+        form(action="/start-game", method="POST")
+            button(type="submit") Start Game
