@@ -10,7 +10,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 app.use(express.static(__dirname + '/../Klient'));
-console.log(__dirname + '/../Klient');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

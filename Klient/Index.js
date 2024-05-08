@@ -1,4 +1,4 @@
-import { Yatzy } from './Yatzy.js';
+import { Yatzy } from '../Yatzy.js';
 
 window.onload = function () {
   let yatzy = new Yatzy();
