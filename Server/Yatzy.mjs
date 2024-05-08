@@ -16,6 +16,25 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!' });
     });
 
+  let players = [];
+
+app.post('/add-player', express.urlencoded({ extended: true }), (req, res) => {
+    const playerName = req.body['player-name'];
+    players.push(playerName);
+    res.redirect('/');
+    console.log(`Player added: ${playerName}`);
+    app.get('/players', (req, res) => {
+        res.render('players', { title: 'Players', players });
+    });
+});
+
+app.post('/start-game', (req, res) => {
+    // Logic to start the game goes here
+    console.log(`Game started with players: ${players.join(', ')}`);
+    players = []; // Reset the players list for the next game
+    res.redirect('/');
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
