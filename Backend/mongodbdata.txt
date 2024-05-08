@@ -1,0 +1,3 @@
+mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB
+
+mongodb+srv://rasmusjerloev:<password>@yatzydb.eyb8jvx.mongodb.net/

@@ -9,12 +9,12 @@ const port = 7777;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!', players});
-  
+    res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!' });
     });
 
   let players = [];
@@ -25,9 +25,7 @@ app.post('/add-player', express.urlencoded({ extended: true }), (req, res) => {
     res.redirect('/');
     console.log(`Player added: ${playerName}`);
     app.get('/players', (req, res) => {
-        console.log(players);
-        res.render('index', { title: 'Players', players });
-        
+        res.render('players', { title: 'Players', players });
     });
 });
 
