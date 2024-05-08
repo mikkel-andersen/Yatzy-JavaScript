@@ -23,5 +23,5 @@ const Login = () => {
             console.log('Login failed', error);
         }
 };
-
+}
 
