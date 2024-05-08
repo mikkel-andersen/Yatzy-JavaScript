@@ -12,3 +12,7 @@ const __dirname = dirname(__filename);
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
