@@ -9,6 +9,8 @@ const port = 7777;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+app.use(express.static(__dirname + '/../Klient'));
+console.log(__dirname + '/../Klient');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +36,7 @@ app.post('/start-game', (req, res) => {
     // Logic to start the game goes here
     console.log(`Game started with players: ${players.join(', ')}`);
     players = []; // Reset the players list for the next game
-    res.redirect('/');
+    res.redirect('Yatzy.html');
 });
 
 app.listen(port, () => {
