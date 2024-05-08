@@ -376,6 +376,3 @@ window.onload = function () {
     yatzy.rollDies();
   });
 };
-
-
-
