@@ -30,8 +30,6 @@ export class Yatzy {
     }
   }
 
-
-
   rollDies() {
     if (this.rollCounter != 3) {
       this.dice.forEach(die => {
@@ -75,41 +73,6 @@ export class Yatzy {
   resetRollCounter() {
     this.rollCounter = 0;
   }
-
-  // updateFields() {
-  //   let results = this.getResults();
-  //   let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
-  //   let sum = 0;
-  //   fieldNames.forEach((fieldName, index) => {
-  //     let field = document.getElementById(fieldName);
-  //     if (!field.disabled) {
-  //       field.value = results[index];
-  //     }
-
-  //     // Only add the event listener the first time updateFields is called
-  //     if (!field.hasEventListener) {
-  //       field.addEventListener('click', function () {
-  //         field.disabled = true;
-  //         this.uncheckAllDice(); // Uncheck all dice
-  //         this.resetRollCounter();
-  //         document.getElementById('rollCounter').textContent = 'Rolls: 0';
-  //         let rollButton = document.querySelector('#rollButton');
-  //         rollButton.disabled = false;
-
-  //         // If the field is one of the first six, add its value to the sum
-  //         if (index < 6) {
-  //           sum += parseInt(field.value, 10);
-  //           document.getElementById('sum').value = sum;
-  //           if (sum >= 63) {
-  //             document.getElementById('bonus').value = 50;
-  //           }
-  //         }
-
-  //         // Calculate the total score
-  //         this.calculateTotal();
-  //       }.bind(this));
-  //     }
-  //   }
 
   calculateSum() {
     let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes'];
@@ -179,9 +142,6 @@ export class Yatzy {
     }
   }
 
-
-
-
   frequency() {
     let frequency = new Array(7).fill(0);
     this.dice.forEach(die => {
@@ -207,6 +167,7 @@ export class Yatzy {
 
     return results;
   }
+
   sameValuePoints(value) {
     let valuePoints = 0;
     valuePoints = this.frequency()[value] * value;
@@ -341,38 +302,14 @@ export class Yatzy {
     return yatzy;
   }
 
-resetGame() {
-  let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy', 'sum', 'bonus', 'total'];
-  fieldNames.forEach((fieldName) => {
-    let field = document.getElementById(fieldName);
-    field.value = '';
-    field.disabled = false;
-    this.resetRollCounter();
-  });
-  document.getElementById('rollCounter').textContent = 'Rolls: 0';
-}
-
-
-}
-
-window.onload = function () {
-  let yatzy = new Yatzy();
-
-  yatzy.dice.forEach((die, index) => {
-    let dieElement = document.getElementById('dice' + (index + 1));
-    dieElement.addEventListener('click', function () {
-      die.held = !die.held; // Toggle the held property of the die
-
-      // Add or remove the held class depending on whether the die is held
-      if (die.held) {
-        dieElement.classList.add('held');
-      } else {
-        dieElement.classList.remove('held');
-      }
+  resetGame() {
+    let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy', 'sum', 'bonus', 'total'];
+    fieldNames.forEach((fieldName) => {
+      let field = document.getElementById(fieldName);
+      field.value = '';
+      field.disabled = false;
+      this.resetRollCounter();
     });
-  });
-
-  document.querySelector('#rollButton').addEventListener('click', function () {
-    yatzy.rollDies();
-  });
-};
+    document.getElementById('rollCounter').textContent = 'Rolls: 0';
+  }
+}
