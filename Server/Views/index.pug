@@ -6,7 +6,9 @@ html
     body
         h1 Welcome to the Yatzy Game!
         h2 Players:
-        ul#players
+        ul
+            each player in players
+                li= player
 
         
         form(action="/add-player", method="POST")
