@@ -57,6 +57,10 @@ app.post('/roll-die', (req, res) => {
     res.sendStatus(200);
 });
 
+app.post('/get-die-values', (req, res) => {
+    res.json(yatzy.getDice());
+});
+
 
 
 app.listen(port, () => {
