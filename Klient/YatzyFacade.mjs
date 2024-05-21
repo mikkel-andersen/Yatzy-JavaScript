@@ -5,11 +5,23 @@ async function post(url, objekt) {
         body: JSON.stringify(objekt),
         headers: { 'Content-Type': 'application/json' }
     });
-    if (respons.status !== 201) // Created
+    if (respons.status !== 200) // Created
+        throw new Error(respons.status);
+    return await respons.json();
+}
+
+
+async function get(url) {
+    const respons = await fetch(url);
+    if (respons.status !== 200) // OK
         throw new Error(respons.status);
     return await respons.json();
 }
 
 export function RollDies() {
     post ('/roll-die');
+}
+
+export async function GetDiceValues() {
+    return await get('/get-dice-values');
 }

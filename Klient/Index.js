@@ -1,5 +1,5 @@
 import { Yatzy } from '/Yatzy.js';
-import { RollDies } from '/YatzyFacade.mjs';
+import { RollDies, GetDiceValues } from '/YatzyFacade.mjs';
 
 window.onload = function () {
   let yatzy = new Yatzy();
@@ -18,7 +18,13 @@ window.onload = function () {
     });
   });
 
-  document.querySelector('#rollButton').addEventListener('click', function () {
+  document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
+    
+    let dice = await GetDiceValues();
+
+      dice.forEach(function (die, index) {
+        document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
+      });
   });
 };

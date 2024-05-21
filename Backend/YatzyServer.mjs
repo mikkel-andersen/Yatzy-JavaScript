@@ -51,11 +51,13 @@ app.post('/start-game', (req, res) => {
 
 app.post('/roll-die', (req, res) => {
     // Logic to roll the die goes here
-    yatzy.rollDie();
+    yatzy.rollDies();
     res.sendStatus(200);
 });
 
-
+app.get('/get-dice-values', (req, res) => {
+    res.send(yatzy.getDiceValues());
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

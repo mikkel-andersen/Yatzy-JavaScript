@@ -1,6 +1,3 @@
-
-
-
 export class Yatzy {
 
   constructor() {
@@ -59,6 +56,10 @@ export class Yatzy {
         rollButton.disabled = true;
       }*/
     }
+  }
+
+  getDiceValues() {
+    return this.dice
   }
 
   uncheckAllDice() {
