@@ -61,6 +61,16 @@ app.get('/get-dice-values', (req, res) => {
     res.send(yatzy.GetDiceValues());
 });
 
+app.get('/get-roll-counter', async (req, res) => {
+    try {
+        res.status(200).send(await yatzy.rollCounter);
+    } catch (error) {
+        console.error('Could not get roll counter', error);
+        res.sendStatus(500);
+    }
+    
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

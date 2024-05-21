@@ -1,3 +1,4 @@
+import { GetRollCounter } from './YatzyFacade.mjs';
 import { Yatzy } from '/Yatzy.js';
 import { RollDies, GetDiceValues } from '/YatzyFacade.mjs';
 
@@ -26,5 +27,6 @@ window.onload = function () {
       dice.forEach(function (die, index) {
         document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
       });
+      document.querySelector('#rollCounter').textContent = 'Rolls: ' + GetRollCounter().value;
   });
 };

@@ -25,3 +25,7 @@ export function RollDies() {
 export async function GetDiceValues() {
     return await get('/get-dice-values');
 }
+
+export async function GetRollCounter() {
+    return await get('/get-roll-counter');
+}
