@@ -1,4 +1,5 @@
-import { Yatzy } from './Yatzy.js';
+import { Yatzy } from '/Yatzy.js';
+import { RollDies } from '/YatzyFacade.mjs';
 
 window.onload = function () {
   let yatzy = new Yatzy();
@@ -18,6 +19,6 @@ window.onload = function () {
   });
 
   document.querySelector('#rollButton').addEventListener('click', function () {
-    yatzy.rollDies();
+    RollDies();
   });
 };

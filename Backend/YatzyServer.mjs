@@ -4,20 +4,14 @@ import User from './PlayerModel.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import {Yatzy }from  './Yatzy.js';
 
 const app = express();
 const port = 7766;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-mongoose.connect('mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
-
-
 app.use(express.static(__dirname + '/../Klient'));
-app.use(express.static(__dirname + '/../Backend'));
-
 console.log(__dirname + '/../Klient');
 
 app.set('view engine', 'pug');
@@ -50,10 +44,6 @@ app.post('/start-game', (req, res) => {
     players = []; // Reset the players list for the next game
     res.redirect('Yatzy.html');
 });
-
-
-
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
