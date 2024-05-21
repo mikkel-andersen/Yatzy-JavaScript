@@ -14,6 +14,8 @@ const __dirname = dirname(__filename);
 let yatzy = new Yatzy();
 
 mongoose.connect('mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Database connected successfully'))
+.catch(err => console.error('Database connection error: ', err));
 
 app.use(express.static(__dirname + '/../Klient'));
 console.log(__dirname + '/../Klient');
