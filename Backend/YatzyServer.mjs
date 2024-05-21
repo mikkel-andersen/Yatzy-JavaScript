@@ -58,7 +58,7 @@ app.post('/roll-die', (req, res) => {
 });
 
 app.get('/get-dice-values', (req, res) => {
-    res.send(yatzy.getDiceValues());
+    res.send(yatzy.GetDiceValues());
 });
 
 app.listen(port, () => {

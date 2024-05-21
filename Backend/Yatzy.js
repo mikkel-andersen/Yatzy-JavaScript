@@ -61,7 +61,7 @@ export class Yatzy {
     }
   }
 
-  GetDice() {
+  GetDiceValues() {
     return this.dice;
     
   }
