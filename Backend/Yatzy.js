@@ -14,7 +14,7 @@ export class Yatzy {
       // Roll the die
       roll() {
         this.value = Math.floor(Math.random() * 6) + 1;
-        console.log('kastet tergniner' + this.value);
+        console.log('kastet terninger ' + this.value);
       }
 
       getValue() {
