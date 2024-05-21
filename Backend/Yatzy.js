@@ -1,5 +1,10 @@
+
+
+
 export class Yatzy {
+
   constructor() {
+
     class Die {
       constructor() {
         this.value = 1;
@@ -9,6 +14,7 @@ export class Yatzy {
       // Roll the die
       roll() {
         this.value = Math.floor(Math.random() * 6) + 1;
+        console.log('kastet tergniner' + this.value);
       }
 
       getValue() {
@@ -39,7 +45,7 @@ export class Yatzy {
 
       this.rollCounter++;
 
-      this.dice.forEach(function (die, index) {
+     /* this.dice.forEach(function (die, index) {
         document.getElementById('dice' + (index + 1)).src = 'img/die' + die.getValue() + '.png';
       });
 
@@ -51,7 +57,7 @@ export class Yatzy {
       if (this.rollCounter === 3) {
         let rollButton = document.querySelector('#rollButton');
         rollButton.disabled = true;
-      }
+      }*/
     }
   }
 
