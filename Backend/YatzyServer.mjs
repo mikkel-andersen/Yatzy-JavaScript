@@ -1,4 +1,6 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import User from './PlayerModel.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -6,32 +8,34 @@ import {Yatzy }from  './Yatzy.js';
 
 const app = express();
 const port = 7766;
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-let yatzy = new Yatzy();
-
 app.use(express.static(__dirname + '/../Klient'));
+console.log(__dirname + '/../Klient');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+let players = [];
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!', players});
   
     });
 
-  let players = [];
-
-app.post('/add-player', express.urlencoded({ extended: true }), (req, res) => {
-    const playerName = req.body['player-name'];
-    players.push(playerName);
-    res.redirect('/');
-    console.log(`Player added: ${playerName}`);
-    app.get('/players', (req, res) => {
-        res.render('players', { title: 'Players', players });
-    });
+    app.post('/add-player', express.json(), async (req, res) => {
+      const playerName = req.body['player-name'];
+      const user = new User({ username: playerName });
+  
+      try {
+          await user.save();
+          console.log(`Player added: ${playerName}`);
+      } catch (err) {
+          console.error('Could not add player', err);
+      }
+  
+      res.redirect('/');
 });
 
 app.post('/start-game', (req, res) => {
@@ -41,11 +45,6 @@ app.post('/start-game', (req, res) => {
     res.redirect('Yatzy.html');
 });
 
-app.post('/roll-die', (req, res) => {
-    yatzy.rollDies();
-    res.sendStatus(200)
-});
-  
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

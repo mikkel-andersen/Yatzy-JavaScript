@@ -1,12 +1,12 @@
-function login() {
+window.login = function() {
     const username = document.getElementById('player-name').value;
 
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:7766/add-player', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({'player-name': username})
     })
     .then(response => response.json())
     .then(data => {
@@ -21,4 +21,3 @@ function login() {
         console.log('Login failed', error);
     });
 }
-
