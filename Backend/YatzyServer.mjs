@@ -4,7 +4,7 @@ import User from './PlayerModel.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import {Yatzy }from  './Yatzy.js';
+import { Yatzy }from  './Yatzy.js';
 import { Player } from './Player.js';
 
 const app = express();
