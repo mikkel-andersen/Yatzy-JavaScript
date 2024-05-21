@@ -1,3 +1,6 @@
+
+
+
 export class Yatzy {
 
   constructor() {
@@ -58,8 +61,9 @@ export class Yatzy {
     }
   }
 
-  getDiceValues() {
-    return this.dice
+  GetDice() {
+    return this.dice.map(die => die.getValue());
+    
   }
 
   uncheckAllDice() {

@@ -14,6 +14,8 @@ const __dirname = dirname(__filename);
 let yatzy = new Yatzy();
 
 mongoose.connect('mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Database connected successfully'))
+.catch(err => console.error('Database connection error: ', err));
 
 app.use(express.static(__dirname + '/../Klient'));
 console.log(__dirname + '/../Klient');
@@ -53,6 +55,10 @@ app.post('/roll-die', (req, res) => {
     // Logic to roll the die goes here
     yatzy.rollDies();
     res.sendStatus(200);
+});
+
+app.post('/get-die-values', (req, res) => {
+    res.json(yatzy.getDice());
 });
 
 app.get('/get-dice-values', (req, res) => {
