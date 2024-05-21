@@ -1,35 +1,47 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import User from './PlayerModel.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const app = express();
 const port = 7766;
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+mongoose.connect('mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
+
+
 app.use(express.static(__dirname + '/../Klient'));
+app.use(express.static(__dirname + '/../Backend'));
+
 console.log(__dirname + '/../Klient');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+let players = [];
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!', players});
   
     });
 
-  let players = [];
-
-app.post('/add-player', express.urlencoded({ extended: true }), (req, res) => {
-    const playerName = req.body['player-name'];
-    players.push(playerName);
-    res.redirect('/');
-    console.log(`Player added: ${playerName}`);
-    app.get('/players', (req, res) => {
-        res.render('players', { title: 'Players', players });
-    });
+    app.post('/add-player', express.json(), async (req, res) => {
+      const playerName = req.body['player-name'];
+      const user = new User({ username: playerName });
+  
+      try {
+          await user.save();
+          console.log(`Player added: ${playerName}`);
+      } catch (err) {
+          console.error('Could not add player', err);
+      }
+  
+      res.redirect('/');
 });
 
 app.post('/start-game', (req, res) => {
@@ -38,6 +50,10 @@ app.post('/start-game', (req, res) => {
     players = []; // Reset the players list for the next game
     res.redirect('Yatzy.html');
 });
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
