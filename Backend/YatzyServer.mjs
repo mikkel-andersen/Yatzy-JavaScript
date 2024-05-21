@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import {Yatzy }from  './Yatzy.js';
+import { Player } from './Player.js';
 
 const app = express();
 const port = 7766;
