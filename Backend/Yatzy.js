@@ -62,8 +62,7 @@ export class Yatzy {
   }
 
   GetDice() {
-    return this.dice.map(die => die.getValue());
-    
+    return this.dice;
   }
 
   uncheckAllDice() {
