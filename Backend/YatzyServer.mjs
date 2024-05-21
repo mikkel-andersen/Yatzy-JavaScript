@@ -11,6 +11,10 @@ const port = 7766;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+let yatzy = new Yatzy();
+
+mongoose.connect('mongodb+srv://rasmusjerloev:mfmfCEvtUPhqnmbM@yatzydb.eyb8jvx.mongodb.net/?retryWrites=true&w=majority&appName=YatzyDB', { useNewUrlParser: true, useUnifiedTopology: true })
+
 app.use(express.static(__dirname + '/../Klient'));
 console.log(__dirname + '/../Klient');
 
@@ -45,7 +49,14 @@ app.post('/start-game', (req, res) => {
     res.redirect('Yatzy.html');
 });
 
+app.post('/roll-die', (req, res) => {
+    // Logic to roll the die goes here
+    yatzy.rollDie();
+    res.sendStatus(200);
+});
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
