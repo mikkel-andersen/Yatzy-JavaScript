@@ -7,14 +7,7 @@ window.onload = function () {
     dieElement.addEventListener('click', function () {
       HoldDie(index);
       showDice();
-      //die.held = !die.held; // Toggle the held property of the die
 
-      // Add or remove the held class depending on whether the die is held
-      /* if (die.held) {
-        dieElement.classList.add('held');
-      } else {
-        dieElement.classList.remove('held');
-      } */
     });
   });
 
@@ -24,13 +17,6 @@ window.onload = function () {
   
   document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
-    
-    // let dice = await GetDiceValues();
-
-    //   dice.forEach(function (die, index) {
-    //     document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
-    //   });
-
     showDice();
       document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();
 
@@ -55,8 +41,6 @@ window.onload = function () {
           };
         }
       });
-
-    
   });
 
   
