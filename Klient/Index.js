@@ -40,7 +40,7 @@ window.onload = function () {
         if (!field.onclick) {
           field.onclick = async () => {
             field.disabled = true;
-            this.uncheckAllDice(); // Uncheck all dice
+            //this.uncheckAllDice(); // Uncheck all dice
             ResetRollCounter();
             document.querySelector('#rollCounter').textContent = 'Rolls: ' + await ResetRollCounter();
             let rollButton = document.querySelector('#rollButton');
