@@ -58,6 +58,11 @@ app.post('/roll-die', (req, res) => {
     res.sendStatus(200);
 });
 
+app.post('/show-active-players', (req, res) => {
+    yatzy.showPlayers();
+    res.sendStatus(200);
+    
+})
 app.get('/show-active-players', (req, res) => {
     res.send({players : yatzy.showPlayers()});
 });
