@@ -6,8 +6,8 @@ html
         h1 Welcome to the Yatzy Game!
         h2 Players:
         ul
-            each player in players
-                li= player
+            each user in users
+                p= user.username
 
         
         form(action="/add-player", method="POST", onsubmit="login(); return false;")
@@ -17,5 +17,6 @@ html
 
         form(action="/start-game", method="POST")
             button(type="submit") Start Game
+
 
         script(src="Login.js")

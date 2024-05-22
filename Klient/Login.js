@@ -8,14 +8,14 @@ window.login = function() {
         },
         body: JSON.stringify({'player-name': username})
     })
-    .then(response => response.json())
-    .then(data => {
-        if(response.status === 200){
-            console.log('Login successful', data);
-            // Redirect to the game page
-        } else {
-            console.log('Login failed', data.message);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Login successful', data);
     })
     .catch(error => {
         console.log('Login failed', error);
