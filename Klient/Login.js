@@ -1,7 +1,7 @@
 window.login = function() {
     const username = document.getElementById('player-name').value;
 
-    fetch('http://localhost:7766/add-player', {
+    fetch('http://localhost:6677/add-player', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

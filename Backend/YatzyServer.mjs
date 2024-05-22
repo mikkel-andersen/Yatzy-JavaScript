@@ -30,24 +30,24 @@ app.get('/', (req, res) => {
   
     });
 
-    app.post('/add-player', express.json(), async (req, res) => {
-      const playerName = req.body['player-name'];
-      const user = new User({ username: playerName });
-  
-      try {
-          await user.save();
-          players.push(playerName);
-          console.log(`Player added: ${playerName}`);
-      } catch (err) {
-          console.error('Could not add player', err);
-      }
+app.post('/add-player', express.json(), async (req, res) => {
+    const playerName = req.body['player-name'];
+    const user = new User({ username: playerName });
+    players.push(playerName);
+    
+    try {
+        await user.save();
+        console.log(`Player added: ${playerName}`);
+    } catch (err) {
+        console.error('Could not add player', err);
+    }
   
       res.redirect('/');
 });
 
 app.post('/start-game', (req, res) => {
     // Logic to start the game goes here
-    console.log(`Game started with players: ${players.join(', ')}`);
+    console.log('Game started with players' + players);
     players = []; // Reset the players list for the next game
     res.redirect('Yatzy.html');
 });
@@ -55,6 +55,11 @@ app.post('/start-game', (req, res) => {
 app.post('/roll-die', (req, res) => {
     // Logic to roll the die goes here
     yatzy.rollDies();
+    res.sendStatus(200);
+});
+
+app.post('/show-active-players', (req, res) => {
+    yatzy.showPlayers(players);
     res.sendStatus(200);
 });
 

@@ -1,6 +1,5 @@
 
 
-
 export class Yatzy {
 
   constructor() {
@@ -61,6 +60,11 @@ export class Yatzy {
     }
   }
 
+  showPlayers(players) {
+    console.log(players);
+    return players
+  }
+
   GetDiceValues() {
     return this.dice;
     
@@ -82,7 +86,6 @@ export class Yatzy {
 
   resetRollCounter() {
     this.rollCounter = 0;
-    return this.rollCounter;
   }
 
   calculateSum() {
@@ -98,10 +101,6 @@ export class Yatzy {
     if (sum >= 63) {
       document.getElementById('bonus').value = 50;
     }
-  }
-
-  getUpdateFields() {
-    this.updateFields();
   }
 
   updateFields() {
@@ -126,6 +125,8 @@ export class Yatzy {
           // Calculate the sum
           this.calculateSum();
 
+          // Calculate the total score after a slight delay
+          setTimeout(() => this.calculateTotal(), 10);
         };
       }
     });

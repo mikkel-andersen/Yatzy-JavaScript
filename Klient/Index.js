@@ -1,6 +1,6 @@
 import { GetRollCounter } from './YatzyFacade.mjs';
 import { Yatzy } from '/Yatzy.js';
-import { RollDies, GetDiceValues, GetFieldsResults, ResetRollCounter } from '/YatzyFacade.mjs';
+import { RollDies, GetDiceValues, GetFieldsResults, ResetRollCounter, showActivePlayers} from '/YatzyFacade.mjs';
 
 window.onload = function () {
   let yatzy = new Yatzy();
@@ -18,7 +18,9 @@ window.onload = function () {
       }
     });
   });
-
+  document.querySelector('#showPlayerButton').addEventListener('click', function() {
+    showActivePlayers();
+  })
   document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
     
@@ -49,4 +51,6 @@ window.onload = function () {
         }
       });
   });
+
+  
 };

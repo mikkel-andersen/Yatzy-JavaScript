@@ -22,6 +22,10 @@ export function RollDies() {
     post ('/roll-die');
 }
 
+export function showActivePlayers() {
+    post ('/show-active-players');
+}
+
 export async function GetDiceValues() {
     return await get('/get-dice-values');
 }
