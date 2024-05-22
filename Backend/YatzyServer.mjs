@@ -7,6 +7,7 @@ import { dirname } from 'path';
 import { Yatzy }from  './Yatzy.js';
 
 const app = express();
+app.use(express.json());
 const port = 6677;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -89,7 +90,7 @@ app.get('/get-reset-roll-counter', async (req, res) => {
 });
 
 app.post('/hold-die', async (req, res) => {
-    const dieIndex = req.body['die-index'];
+    const dieIndex = req.body.dieIndex;
     yatzy.holdDie(dieIndex);
     res.sendStatus(200);
 })

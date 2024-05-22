@@ -1,23 +1,23 @@
-import { GetRollCounter } from './YatzyFacade.mjs';
-import { Yatzy } from '/Yatzy.js';
+import { GetRollCounter, HoldDie } from './YatzyFacade.mjs';
 import { RollDies, GetDiceValues, GetFieldsResults, ResetRollCounter, showActivePlayers} from '/YatzyFacade.mjs';
 
 window.onload = function () {
-  let yatzy = new Yatzy();
-
-  yatzy.dice.forEach((die, index) => {
-    let dieElement = document.getElementById('dice' + (index + 1));
+  let dice = document.querySelectorAll('.die');
+  dice.forEach((dieElement, index) => {
     dieElement.addEventListener('click', function () {
-      die.held = !die.held; // Toggle the held property of the die
+      HoldDie(index);
+      showDice();
+      //die.held = !die.held; // Toggle the held property of the die
 
       // Add or remove the held class depending on whether the die is held
-      if (die.held) {
+      /* if (die.held) {
         dieElement.classList.add('held');
       } else {
         dieElement.classList.remove('held');
-      }
+      } */
     });
   });
+
   document.querySelector('#showPlayerButton').addEventListener('click', function() {
     showActivePlayers();
   });
@@ -25,11 +25,13 @@ window.onload = function () {
   document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
     
-    let dice = await GetDiceValues();
+    // let dice = await GetDiceValues();
 
-      dice.forEach(function (die, index) {
-        document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
-      });
+    //   dice.forEach(function (die, index) {
+    //     document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
+    //   });
+
+    showDice();
       document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();
 
       let results = await GetFieldsResults();
@@ -97,4 +99,17 @@ function calculateTotal() {
   //     this.resetGame();
   //   }
   // }
+}
+
+async function showDice() {
+  let dice = await GetDiceValues();
+
+      dice.forEach(function (die, index) {
+        document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
+        if (die.held) {
+          document.getElementById('dice' + (index + 1)).classList.add('held');
+      } else {
+        document.getElementById('dice' + (index + 1)).classList.remove('held');
+      }
+      });
 }

@@ -5,9 +5,9 @@ async function post(url, objekt) {
         body: JSON.stringify(objekt),
         headers: { 'Content-Type': 'application/json' }
     });
-    if (respons.status !== 200) // Created
-        throw new Error(respons.status);
-    return await respons.json();
+    // if (respons.status !== 200) // Created
+    //     throw new Error(respons.status);
+    return await respons.text();
 }
 
 
@@ -49,5 +49,5 @@ export async function ResetRollCounter() {
 }
 
 export async function HoldDie(dieIndex) {
-    post('/hold-die', { 'die-index': dieIndex });
+    post('/hold-die', { dieIndex : dieIndex });
 }
