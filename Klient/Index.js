@@ -42,11 +42,29 @@ window.onload = function () {
             field.disabled = true;
             //this.uncheckAllDice(); // Uncheck all dice
             ResetRollCounter();
+            calculateSum();
             document.querySelector('#rollCounter').textContent = 'Rolls: ' + await ResetRollCounter();
             let rollButton = document.querySelector('#rollButton');
             rollButton.disabled = false;
           };
         }
       });
+
+    
   });
+};
+
+function calculateSum() {
+  let fN  = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes'];
+  let sum = 0;
+  fN.forEach((fN) => {
+    let field = document.getElementById(fN);
+    if (field.disabled) { // Only add the value if the field is disabled (i.e., a score has been saved)
+      sum += parseInt(field.value, 10);
+    }
+  });
+  document.getElementById('sum').value = sum;
+  if (sum >= 63) {
+    document.getElementById('bonus').value = 50;
+  };
 };

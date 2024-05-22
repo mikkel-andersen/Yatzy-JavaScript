@@ -35,6 +35,10 @@ export class Yatzy {
     }
   }
 
+  holdDie(dieIndex) {
+    this.dice[dieIndex].held = !this.dice[dieIndex].held;
+  }
+
   rollDies() {
     if (this.rollCounter != 3) {
       this.dice.forEach(die => {

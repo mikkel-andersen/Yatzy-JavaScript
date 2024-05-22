@@ -44,3 +44,7 @@ export async function ResetRollCounter() {
     retur = await get('/get-reset-roll-counter');
     return retur.rollCounter;
 }
+
+export async function HoldDie(dieIndex) {
+    post('/hold-die', { 'die-index': dieIndex });
+}

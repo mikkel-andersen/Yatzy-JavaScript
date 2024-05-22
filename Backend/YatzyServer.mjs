@@ -79,6 +79,12 @@ app.get('/get-reset-roll-counter', async (req, res) => {
     res.send({rollCounter : yatzy.resetRollCounter()});
 });
 
+app.post('/hold-die', async (req, res) => {
+    const dieIndex = req.body['die-index'];
+    yatzy.holdDie(dieIndex);
+    res.sendStatus(200);
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
