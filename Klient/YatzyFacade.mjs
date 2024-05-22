@@ -22,8 +22,9 @@ export function RollDies() {
     post ('/roll-die');
 }
 
-export function showActivePlayers() {
-    post ('/show-active-players');
+export async function showActivePlayers() {
+    let retur = await get ('/show-active-players');
+    return retur.players;
 }
 
 export async function GetDiceValues() {
@@ -31,9 +32,7 @@ export async function GetDiceValues() {
 }
 
 export async function GetRollCounter() {
-    let retur;
-    retur = await get('/get-roll-counter');
-
+    let retur = await get('/get-roll-counter');
     return retur.rollCounter;
 }
 

@@ -20,7 +20,8 @@ window.onload = function () {
   });
   document.querySelector('#showPlayerButton').addEventListener('click', function() {
     showActivePlayers();
-  })
+  });
+  
   document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
     
