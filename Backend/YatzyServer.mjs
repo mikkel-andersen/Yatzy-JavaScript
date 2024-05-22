@@ -7,7 +7,7 @@ import { dirname } from 'path';
 import { Yatzy }from  './Yatzy.js';
 
 const app = express();
-const port = 7766;
+const port = 6677;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -59,11 +59,34 @@ app.post('/start-game', (req, res) => {
 
 app.post('/roll-die', (req, res) => {
     // Logic to roll the die goes here
-    yatzy.rollDie();
+    yatzy.rollDies();
     res.sendStatus(200);
 });
 
+app.get('/get-dice-values', (req, res) => {
+    res.send(yatzy.GetDiceValues());
+});
 
+<<<<<<< HEAD
+=======
+app.get('/get-roll-counter', async (req, res) => {
+    try {
+        res.status(200).send({rollCounter: yatzy.getRollCounter()});
+    } catch (error) {
+        console.error('Could not get roll counter', error);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/get-fields-results', async (req, res) => {
+    res.send(yatzy.getResults());
+});
+
+app.get('/get-reset-roll-counter', async (req, res) => {
+    res.send({rollCounter : yatzy.resetRollCounter()});
+});
+
+>>>>>>> cf3bf39bc22f8cb0ea5b7b405bb98992ce67aaea
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
