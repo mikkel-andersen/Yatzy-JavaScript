@@ -48,7 +48,7 @@ app.post('/add-player', express.json(), async (req, res) => {
 app.post('/start-game', (req, res) => {
     // Logic to start the game goes here
     console.log('Game started with players' + players);
-    players = []; // Reset the players list for the next game
+    
     res.redirect('Yatzy.html');
 });
 
