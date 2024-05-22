@@ -25,14 +25,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 let players = [];
 
-app.get('/', async (req, res) => {
-  try {
-      const users = await User.find({});
-      res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!', users });
-  } catch (err) {
-      console.error('Could not fetch users', err);
-  }
-});
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Yatzy', message: 'Welcome to Yatzy!', players});
+  
+    });
 
     app.post('/add-player', express.json(), async (req, res) => {
       const playerName = req.body['player-name'];
@@ -41,13 +37,11 @@ app.get('/', async (req, res) => {
       try {
           await user.save();
           console.log(`Player added: ${playerName}`);
-          res.redirect('/');
-
       } catch (err) {
           console.error('Could not add player', err);
       }
-
-
+  
+      res.redirect('/');
 });
 
 app.post('/start-game', (req, res) => {
@@ -67,8 +61,6 @@ app.get('/get-dice-values', (req, res) => {
     res.send(yatzy.GetDiceValues());
 });
 
-<<<<<<< HEAD
-=======
 app.get('/get-roll-counter', async (req, res) => {
     try {
         res.status(200).send({rollCounter: yatzy.getRollCounter()});
@@ -86,7 +78,6 @@ app.get('/get-reset-roll-counter', async (req, res) => {
     res.send({rollCounter : yatzy.resetRollCounter()});
 });
 
->>>>>>> cf3bf39bc22f8cb0ea5b7b405bb98992ce67aaea
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
