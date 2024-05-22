@@ -1,1 +1,3 @@
 tully er en fag
+
+Næste opgave er: få check og uncheck dice til at virke. Til dette skal vi bruge Claus
