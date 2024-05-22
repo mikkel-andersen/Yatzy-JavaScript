@@ -59,8 +59,12 @@ app.post('/roll-die', (req, res) => {
 });
 
 app.post('/show-active-players', (req, res) => {
-    yatzy.showPlayers(players);
+    yatzy.showPlayers();
     res.sendStatus(200);
+    
+})
+app.get('/show-active-players', (req, res) => {
+    res.send({players : yatzy.showPlayers()});
 });
 
 app.get('/get-dice-values', (req, res) => {
