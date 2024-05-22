@@ -32,3 +32,9 @@ export async function GetRollCounter() {
 
     return retur.rollCounter;
 }
+
+export async function GetFieldsResults() {
+    let retur;
+    retur = await get('/get-fields-results');
+    return retur;
+}

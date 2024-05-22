@@ -99,6 +99,10 @@ export class Yatzy {
     }
   }
 
+  getUpdateFields() {
+    this.updateFields();
+  }
+
   updateFields() {
     let results = this.getResults();
     let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
@@ -121,8 +125,6 @@ export class Yatzy {
           // Calculate the sum
           this.calculateSum();
 
-          // Calculate the total score after a slight delay
-          setTimeout(() => this.calculateTotal(), 10);
         };
       }
     });

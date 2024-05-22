@@ -7,7 +7,7 @@ import { dirname } from 'path';
 import { Yatzy }from  './Yatzy.js';
 
 const app = express();
-const port = 7766;
+const port = 6677;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -68,7 +68,10 @@ app.get('/get-roll-counter', async (req, res) => {
         console.error('Could not get roll counter', error);
         res.sendStatus(500);
     }
-    
+});
+
+app.get('/get-fields-results', async (req, res) => {
+    res.send(yatzy.getResults());
 });
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 import { GetRollCounter } from './YatzyFacade.mjs';
 import { Yatzy } from '/Yatzy.js';
-import { RollDies, GetDiceValues } from '/YatzyFacade.mjs';
+import { RollDies, GetDiceValues, GetFieldsResults } from '/YatzyFacade.mjs';
 
 window.onload = function () {
   let yatzy = new Yatzy();
@@ -28,5 +28,25 @@ window.onload = function () {
         document.getElementById('dice' + (index + 1)).src = 'img/die' + die.value + '.png';
       });
       document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();
+
+      let results = await GetFieldsResults();
+      let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+      fieldNames.forEach((fieldName, index) => {
+        let field = document.getElementById(fieldName);
+        if (!field.disabled) {
+          field.value = results[index];
+        }
+
+        if (!field.onclick) {
+          field.onclick = () => {
+            field.disabled = true;
+            this.uncheckAllDice(); // Uncheck all dice
+            this.resetRollCounter();
+            document.getElementById('rollCounter').textContent = 'Rolls: 0';
+            let rollButton = document.querySelector('#rollButton');
+            rollButton.disabled = false;
+          };
+        }
+      });
   });
 };
