@@ -40,5 +40,7 @@ export async function GetFieldsResults() {
 }
 
 export async function ResetRollCounter() {
-    return await get('/get-reset-roll-counter');
+    let retur;
+    retur = await get('/get-reset-roll-counter');
+    return retur.rollCounter;
 }

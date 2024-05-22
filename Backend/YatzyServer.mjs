@@ -75,7 +75,7 @@ app.get('/get-fields-results', async (req, res) => {
 });
 
 app.get('/get-reset-roll-counter', async (req, res) => {
-    res.send(yatzy.resetRollCounter());
+    res.send({rollCounter : yatzy.resetRollCounter()});
 });
 
 app.listen(port, () => {

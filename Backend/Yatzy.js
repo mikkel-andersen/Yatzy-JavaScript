@@ -82,6 +82,7 @@ export class Yatzy {
 
   resetRollCounter() {
     this.rollCounter = 0;
+    return this.rollCounter;
   }
 
   calculateSum() {

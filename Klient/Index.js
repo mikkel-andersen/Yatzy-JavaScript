@@ -42,7 +42,7 @@ window.onload = function () {
             field.disabled = true;
             this.uncheckAllDice(); // Uncheck all dice
             ResetRollCounter();
-            document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();
+            document.querySelector('#rollCounter').textContent = 'Rolls: ' + await ResetRollCounter();
             let rollButton = document.querySelector('#rollButton');
             rollButton.disabled = false;
           };
