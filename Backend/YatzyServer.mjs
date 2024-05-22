@@ -63,7 +63,7 @@ app.get('/get-dice-values', (req, res) => {
 
 app.get('/get-roll-counter', async (req, res) => {
     try {
-        res.status(200).send(await yatzy.rollCounter);
+        res.status(200).send({rollCounter: yatzy.getRollCounter()});
     } catch (error) {
         console.error('Could not get roll counter', error);
         res.sendStatus(500);

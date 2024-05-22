@@ -27,5 +27,8 @@ export async function GetDiceValues() {
 }
 
 export async function GetRollCounter() {
-    return await get('/get-roll-counter');
+    let retur;
+    retur = await get('/get-roll-counter');
+
+    return retur.rollCounter;
 }

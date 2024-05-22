@@ -77,8 +77,7 @@ export class Yatzy {
   }
 
   getRollCounter() {
-    let jrollCounter = {"value": this.rollCounter};
-    return jrollCounter;
+    return this.rollCounter;
   }
 
   resetRollCounter() {
