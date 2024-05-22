@@ -1,6 +1,6 @@
 import { GetRollCounter } from './YatzyFacade.mjs';
 import { Yatzy } from '/Yatzy.js';
-import { RollDies, GetDiceValues, GetFieldsResults } from '/YatzyFacade.mjs';
+import { RollDies, GetDiceValues, GetFieldsResults, ResetRollCounter } from '/YatzyFacade.mjs';
 
 window.onload = function () {
   let yatzy = new Yatzy();
@@ -38,11 +38,11 @@ window.onload = function () {
         }
 
         if (!field.onclick) {
-          field.onclick = () => {
+          field.onclick = async () => {
             field.disabled = true;
             this.uncheckAllDice(); // Uncheck all dice
-            this.resetRollCounter();
-            document.getElementById('rollCounter').textContent = 'Rolls: 0';
+            ResetRollCounter();
+            document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();
             let rollButton = document.querySelector('#rollButton');
             rollButton.disabled = false;
           };

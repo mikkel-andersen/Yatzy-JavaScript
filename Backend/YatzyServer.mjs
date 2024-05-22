@@ -74,6 +74,10 @@ app.get('/get-fields-results', async (req, res) => {
     res.send(yatzy.getResults());
 });
 
+app.get('/get-reset-roll-counter', async (req, res) => {
+    res.send(yatzy.resetRollCounter());
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
