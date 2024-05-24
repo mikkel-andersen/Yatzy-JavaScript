@@ -23,7 +23,15 @@ window.onload = function () {
       }
     });
   });
-  
+  let audioElement = document.getElementById('myAudio');
+
+document.querySelector('#rollButton').addEventListener('mouseover', function() {
+  audioElement.play();
+});
+
+document.querySelector('#rollButton').addEventListener('mouseout', function() {
+  audioElement.pause();
+});
   document.querySelector('#rollButton').addEventListener('click', async function () {
     RollDies();
     showDice();
