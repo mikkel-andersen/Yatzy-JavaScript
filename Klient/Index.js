@@ -127,11 +127,3 @@ async function showDice() {
       }
 }
 
-function triggerBonus() {
-  if (document.getElementById('bonus').value >= 50) {
-    let bonusImage = document.getElementById('bonusImage');
-  bonusImage.src = 'img/Mette.png'; // replace with your image path
-  bonusImage.style.display = 'block';
-
-  }
-}
