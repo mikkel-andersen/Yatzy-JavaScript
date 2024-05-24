@@ -77,10 +77,6 @@ export class Yatzy {
   uncheckAllDice() {
     this.dice.forEach((die, index) => {
       die.held = false;
-      let dieElement = document.getElementById('dice' + (index + 1));
-      if (dieElement.classList.contains('held')) {
-        dieElement.classList.remove('held');
-      }
     });
   }
 

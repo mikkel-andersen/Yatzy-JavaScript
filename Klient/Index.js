@@ -31,9 +31,9 @@ window.onload = function () {
         if (!field.onclick) {
           field.onclick = async () => {
             field.disabled = true;
-            //this.uncheckAllDice(); // Uncheck all dice
             ResetRollCounter();
             uncheckAllDice();
+            showDice();
             calculateSum();
             calculateTotal();
             document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();

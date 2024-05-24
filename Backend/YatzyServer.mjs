@@ -93,7 +93,7 @@ app.post('/hold-die', async (req, res) => {
     const dieIndex = req.body.dieIndex;
     yatzy.holdDie(dieIndex);
     res.sendStatus(200);
-})
+});
 
 app.post('/uncheck-all-dice', async (reg, res) => {
     yatzy.uncheckAllDice();
