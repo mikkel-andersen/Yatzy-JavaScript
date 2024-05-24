@@ -1,3 +1,5 @@
-tully er en fag
+Vi mangler "noget" når alle felter er disabled
 
-Næste opgave er: få check og uncheck dice til at virke. Til dette skal vi bruge Claus
+1. Når alle felter er disabled
+2. 
+3. 
