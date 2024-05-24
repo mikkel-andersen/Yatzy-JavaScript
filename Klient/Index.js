@@ -102,26 +102,19 @@ function calculateSum() {
 function calculateTotal() {
   let fieldNames = ['onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
   let total = 0;
-  let allFieldsDisabled = true;
+  //let allFieldsDisabled = true;
   fieldNames.forEach((fieldName) => {
     let field = document.getElementById(fieldName);
     if (field.disabled) { // Only add the value if the field is disabled (i.e., a score has been saved)
       total += parseInt(field.value, 10);
-    } else {
-      allFieldsDisabled = false;
-    }
+    } //else {
+     // allFieldsDisabled = false;
+   // }
   });
   total += parseInt(document.getElementById('sum').value, 10) || 0;
   total += parseInt(document.getElementById('bonus').value, 10) || 0;
   document.getElementById('total').value = total;
-
-  // if (allFieldsDisabled) {
-  //   let newGame = window.confirm("All fields are filled. Do you want to start a new game?");
-  //   if (newGame) {
-  //     this.resetGame();
-  //   }
-  // }
-}
+};
 
 async function showDice() {
   let dice = await GetDiceValues();
@@ -134,14 +127,11 @@ async function showDice() {
         document.getElementById('dice' + (index + 1)).classList.remove('held');
       }
       });
+}
 
-      function allFieldsDisabled() {
-        let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
-        for (let fieldName of fieldNames) {
-          if (!document.getElementById(fieldName).disabled) {
-            return false;
-          }
-        }
-      }
+async function checkIfPlayerIsDone() {
+  let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+  let isDone = fieldNames.every(fieldName => document.getElementById(fieldName).disabled);
+  return isDone;
 }
 
