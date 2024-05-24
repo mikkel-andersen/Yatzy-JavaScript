@@ -155,4 +155,14 @@ img.held {
     animation: grow 1s;
 }
 
+#bonusImage2 {
+    width: 500px;
+    height: 400px;
+    position: fixed; /* or 'absolute' */
+    left: 0;
+    bottom: 0;
+    animation: grow 1s;
+    
+}
+
 
