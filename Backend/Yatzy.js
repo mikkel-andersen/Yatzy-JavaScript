@@ -327,3 +327,7 @@ export class Yatzy {
     document.getElementById('rollCounter').textContent = 'Rolls: 0';
   }
 }
+
+
+
+
