@@ -116,4 +116,13 @@ async function showDice() {
         document.getElementById('dice' + (index + 1)).classList.remove('held');
       }
       });
+
+      function allFieldsDisabled() {
+        let fieldNames = ['aces', 'twos', 'threes', 'fours', 'fives', 'sixes', 'onePair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse', 'smallStraight', 'bigStraight', 'chance', 'yatzy'];
+        for (let fieldName of fieldNames) {
+          if (!document.getElementById(fieldName).disabled) {
+            return false;
+          }
+        }
+      }
 }
