@@ -57,7 +57,7 @@ function calculateSum() {
     }
   });
   document.getElementById('sum').value = sum;
-  if (sum >= 63) {
+  if (document.getElementById('sum').value >= 63) {
     document.getElementById('bonus').value = 50;
   };
 };
