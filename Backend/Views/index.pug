@@ -5,10 +5,6 @@ html
     body
         h1 Welcome to the Yatzy Game!
         h2 Players:
-        ul
-            each player in players
-                li= player
-
         
         form(action="/add-player", method="POST", onsubmit="login(); return false;")
         label(for="player-name") Player Name:

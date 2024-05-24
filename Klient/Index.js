@@ -12,7 +12,16 @@ window.onload = function () {
   });
 
   document.querySelector('#showPlayerButton').addEventListener('click', function() {
-    showActivePlayers();
+    showActivePlayers().then(players => {
+      const playerList = document.querySelector('#playerList');
+      // playerList.innerHTML = '';
+
+      for (let player of players) {
+        const listItem = document.createElement('li');
+        listItem.textContent = player;
+        playerList.appendChild(listItem);
+      }
+    });
   });
   
   document.querySelector('#rollButton').addEventListener('click', async function () {
