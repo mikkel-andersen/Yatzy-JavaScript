@@ -16,6 +16,12 @@ for (let i = 1; i <= 20; i++) {
   audioFiles.push(`audio/${i}.wav`);
 } // Add all your audio file paths here
 
+document.querySelector('#bonusImage2').addEventListener('click', function() {
+  audioElement.src = 'audio/mager.mp3';
+  audioElement.play();
+
+});
+
 document.querySelector('#bonusImage').addEventListener('click', function() {
   let randomFile = audioFiles[Math.floor(Math.random() * audioFiles.length) + 1]; // Select a random file from the array
   let audioElement = document.getElementById('bonusAudio');
