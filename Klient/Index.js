@@ -17,9 +17,11 @@ window.onload = function () {
       // playerList.innerHTML = '';
 
       for (let player of players) {
-        const listItem = document.createElement('li');
-        listItem.textContent = player;
-        playerList.appendChild(listItem);
+        if(!Array.from(playerList.children).some(li => li.textContent === player)){
+          const listItem = document.createElement('li');
+          listItem.textContent = player;
+          playerList.appendChild(listItem);
+        }
       }
     });
   });
