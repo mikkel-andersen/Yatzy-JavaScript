@@ -51,3 +51,8 @@ export async function ResetRollCounter() {
 export async function HoldDie(dieIndex) {
     post('/hold-die', { dieIndex : dieIndex });
 }
+
+export async function uncheckAllDice() {
+    post ('/uncheck-all-dice');
+    
+}

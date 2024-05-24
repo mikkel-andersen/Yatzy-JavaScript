@@ -1,4 +1,4 @@
-import { GetRollCounter, HoldDie } from './YatzyFacade.mjs';
+import { GetRollCounter, HoldDie, uncheckAllDice } from './YatzyFacade.mjs';
 import { RollDies, GetDiceValues, GetFieldsResults, ResetRollCounter, showActivePlayers} from '/YatzyFacade.mjs';
 
 window.onload = function () {
@@ -47,6 +47,7 @@ window.onload = function () {
             field.disabled = true;
             //this.uncheckAllDice(); // Uncheck all dice
             ResetRollCounter();
+            uncheckAllDice();
             calculateSum();
             calculateTotal();
             document.querySelector('#rollCounter').textContent = 'Rolls: ' + await GetRollCounter();

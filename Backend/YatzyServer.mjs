@@ -95,6 +95,11 @@ app.post('/hold-die', async (req, res) => {
     res.sendStatus(200);
 })
 
+app.post('/uncheck-all-dice', async (reg, res) => {
+    yatzy.uncheckAllDice();
+    res.sendStatus(200);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
